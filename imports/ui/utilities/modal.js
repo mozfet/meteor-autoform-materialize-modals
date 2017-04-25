@@ -10,7 +10,7 @@ export const modal = {
     console.log('util.modal.open', [elId, options]);
 
     //get the modal query
-    const jqModal = $(elId);
+    const jqModal = $('#'+elId);
     console.log('util.modal.open.modal', jqModal);
 
     //if materialize
@@ -47,7 +47,7 @@ export const modal = {
   close(elId) {
 
     //get the modal query
-    const jqModal = $(elId);
+    const jqModal = $('#'+elId);
     console.log('util.modal.open.modal', jqModal);
 
     //if materialize
@@ -61,7 +61,7 @@ export const modal = {
     if(Package['poetic:materialize-scss']) {
 
       //close modal using closeModal
-      jqModal.closeModal(options);
+      jqModal.closeModal();
     }
   }
 };

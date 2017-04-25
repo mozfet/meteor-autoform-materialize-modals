@@ -1,11 +1,12 @@
 <template name="autoformMaterializeModal">
-  <div id={{id}} class="modal">
+  <div id={{modalId}} class="modal">
     <div class="modal-content">
-      {{> autoform data=formData}}
+      <h3>{{modalTitle}}</h3>
+      {{> quickForm formData}}
     </div>
     <div class="modal-footer">
-      <button class="right btn-flat teal-text js-autoform-materialize-modal-submit">{{submitButtonLabel}}</button>
-      <button class="left btn-flat modal-action js-autoform-materialize-modal-cancel">{{cancelButtonLabel}}</button>
+      <a class="btn-flat teal-text js-autoform-materialize-modal-submit">{{submitButtonLabel}}</a>
+      <a class="btn-flat js-autoform-materialize-modal-cancel">{{cancelButtonLabel}}</a>
     </div>
   </div>
 </template>
