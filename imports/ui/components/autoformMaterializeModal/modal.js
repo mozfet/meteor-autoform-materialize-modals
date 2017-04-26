@@ -18,7 +18,8 @@ Template.autoformMaterializeModal.onCreated(() => {
   instance.modalId = 'autoformMaterlializeModal_'+data.id;
 
   //if form has not been registered
-  if(_.contains(forms, instance.data.id)) {
+  const registered = _.contains(forms, instance.data.id);
+  if(!registered) {
       console.log('registering form', instance.data.id);
 
     //register the form
