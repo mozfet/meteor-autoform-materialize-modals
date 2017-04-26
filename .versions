@@ -19,7 +19,7 @@ meteor@1.6.1
 modules@0.8.2
 modules-runtime@0.7.10
 mongo-id@1.0.6
-mozfet:autoform-materialize-modals@0.0.1
+mozfet:autoform-materialize-modals@0.0.2
 observe-sequence@1.0.16
 promise@0.8.8
 random@1.0.10
