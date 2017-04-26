@@ -1,16 +1,40 @@
-Meteor AutoForm Materialize Modals
+AutoForm Materialize Modals
 ======================
 
-Materialize modals to insert/update/remove docs from Meteor collections using AutoForm and mozfet:meteor-autoform-materialize.
+Materialize styled AutoForm modals to insert/update/(remove) docs from collections.
 
 Supports both materialize:materialize and poetic:materialize-scss.
 
 ## Setup ##
 
-1. `meteor add mozfet:autoform-modals-materialize`
+### Install Materialize ###
+```
+meteor add materialize:materialize@0.98.2
+```
+or install MaterializeScss
+```
+meteor add foursever-scss
+meteor add poetic:materialize-scss@1.97.6_1
+```
+
+### Install SimpleSchema, AutoForm and Collection2 ###
+```
+$ meteor npm install simpl-schema --save
+$ meteor add aldeed:autoform
+$ meteor add aldeed:collection2-core
+```
+
+### Install AutoForm Materialize ###
+```
+$ meteor add mozfet:autoform-materialize
+```
+
+Install AutoForm Materialize modals
+```
+$ `meteor add mozfet:autoform-modals-materialize`
+```
 
 ## Usage ##
-
 In the template where you want to trigger the modal (named example here).
 
 in example.js:
@@ -49,7 +73,7 @@ In addition to the normal quickform data attributes supported by AutoForm, the f
 - data.cancelButtonLabel : optional, but recommended for internationalization
 
 
-## This package is part of a suite
+## This package is part of a suite ##
 [mozfet:meteor-autoform-materialize](https://github.com/mozfet/meteor-autoform-materialize)
 [mozfet:meteor-autoform-materialize-modals](https://github.com/mozfet/meteor-autoform-materialize-modals)
 [mozfet:meteor-autoform-nouislider](https://github.com/mozfet/meteor-autoform-nouislider)
