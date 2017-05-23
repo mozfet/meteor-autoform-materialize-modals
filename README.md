@@ -45,7 +45,8 @@ Template.example.helpers({
         id: 'insertExample',
         collection: 'Examples',
         title: 'Add Example',
-        type: 'insert'
+        type: 'insert',
+        modalParentId: 'js-dynaview'
       };
     }
 });
@@ -54,7 +55,7 @@ Template.example.helpers({
 in example.html:
 ```
 <template name="example">
-  {{#autoformMaterializeModalLauncher data=data}}
+  {{#autoformMaterializeModalLauncher data}}
     <a class="btn js-autofrom-materialize-modal-trigger">
       click to launch
     </a>
