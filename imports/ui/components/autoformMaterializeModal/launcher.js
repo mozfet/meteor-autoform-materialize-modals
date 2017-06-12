@@ -20,7 +20,7 @@ Template.autoformMaterializeModalLauncher.onCreated(() => {
   delete instance.modalData.modalParentId;
 
   //init modal id
-  instance.modalId = 'autoformMaterlializeModal_'+instance.data.id;
+  instance.modalId = 'autoformMaterializeModal_'+instance.data.id;
 });
 
 //on rendered
