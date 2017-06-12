@@ -19,6 +19,12 @@ Template.autoformMaterializeModalLauncher.onCreated(() => {
   instance.modalData = _.clone(instance.data);
   delete instance.modalData.modalParentId;
 
+  //update modal data when instance data changes
+  instance.autorun(() => {
+    instance.modalData = _.clone(Template.currentData());
+    delete instance.modalData.modalParentId;
+  });
+
   //init modal id
   instance.modalId = 'autoformMaterializeModal_'+instance.data.id;
 });
