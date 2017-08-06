@@ -122,5 +122,6 @@ Template.autoformMaterializeModal.events({
 //on destroyed
 Template.autoformMaterializeModal.onDestroyed(() => {
   //TODO make this configurable
+  const instance = Template.instance();
   $('#'+instance.modalId).remove();
 });
