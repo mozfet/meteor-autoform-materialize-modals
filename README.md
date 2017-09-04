@@ -2,29 +2,32 @@
 Materialize styled AutoForm modals to insert/update/(remove) docs from collections.
 Important: poetic:materialize-scss is no longer maintained and no longer supported.
 
-## Setup ##
+## Install Materialize-css
 
 ### Install Materialize-css (CSS only) using Atmosphere ###
+
 ```
-meteor add materialize:materialize@0.98.2
+meteor add materialize:materialize
 ```
 ### Install Materialize-css (CSS & SASS) using NPM ###
+
+1. install dependancies
 ```
 $ meteor npm install hammerjs --save
 $ meteor npm install materialize-css --save
 $ meteor add fourseven-scss
 ```
-/imports/startup/client/materialize.js
+2. create init script to import JavaScript in file `/imports/startup/client/materialize.js`
 ```
 import 'hammerjs';
 import 'materialize-css/dist/js/materialize.js';
 import 'materialize-css/extras/noUISlider/nouislider.js';
 ```
-/imports/startup/client/index.js
+3. import init script in file `/imports/startup/client/index.js`
 ```
 import 'materialize.js'
 ```
-/client/main.scss
+4. import SASS in file `/client/main.scss`
 ```
 @import "../node_modules/materialize-css/sass/components/_color.scss";
 
@@ -38,6 +41,16 @@ $link-color: color("light-blue", "darken-1") !default;
 
 @import "../node_modules/materialize-css/sass/materialize.scss";
 ```
+5. copy fonts folder from `/node-modules/materialize-css/dist/fonts` to '/public'
+
+## Install Autoform-Materialize ##
+
+1. `meteor add mozfet:autoform-materialize`
+2. In a client file (ex: `/imports/startup/client/autoform.js`)
+  ```
+  AutoForm.setDefaultTemplate('materialize');
+  ```
+/OR/ Install by cloning the github projects from this theme suite into your project's /packages folder.
 
 ### Install SimpleSchema, AutoForm and Collection2 ###
 ```
@@ -96,11 +109,12 @@ In addition to the normal quickform data attributes supported by AutoForm, the f
 - data.cancelButtonLabel : optional, but recommended for internationalization
 
 ## Dependancies ##
-To avoid unnecessary maintenance, this package only depends directly on core meteor packages, however I will not work unless you installed the indirect dependancies as per setup section above.
+To avoid unnecessary maintenance, this package only depends directly on core meteor packages, however it will not work unless you installed the indirect dependancies as per installation instructions above.
 
 ## This package is part of a suite ##
 - [mozfet:meteor-autoform-materialize](https://github.com/mozfet/meteor-autoform-materialize)
 - [mozfet:meteor-autoform-materialize-modals](https://github.com/mozfet/meteor-autoform-materialize-modals)
 - [mozfet:meteor-autoform-nouislider](https://github.com/mozfet/meteor-autoform-nouislider)
 - [mozfet:meteor-autoform-medium](https://github.com/mozfet/meteor-autoform-medium)
+- [mozfet:materialize-icons](https://github.com/mozfet/meteor-materialize-icons)
 - [mozfet:meteor-autoform-materialize-playground](https://github.com/mozfet/meteor-autoform-materialize-playground)
