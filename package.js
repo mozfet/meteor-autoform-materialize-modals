@@ -1,7 +1,7 @@
 Package.describe({
   name: 'mozfet:autoform-materialize-modals',
   summary: 'Autoform Materialize Modals',
-  version: '1.0.1',
+  version: '1.0.2',
   git: 'https://github.com/mozfet/meteor-autoform-materialize-modals.git'
 });
 

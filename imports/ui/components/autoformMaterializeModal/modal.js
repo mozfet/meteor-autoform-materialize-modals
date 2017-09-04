@@ -60,8 +60,10 @@ Template.autoformMaterializeModal.onRendered(() => {
   const instance = Template.instance();
 
   //open the modal
-  console.log('modal.onRendered: open the modal');
-  instance.$('#'+instance.modalId).modal('open');
+  const modelSelector = '#'+instance.modalId;
+  console.log('modal.onRendered: open the modal', modelSelector);
+  instance.$(modelSelector).modal();
+  instance.$(modelSelector).modal('open');
 });
 
 //helpers
