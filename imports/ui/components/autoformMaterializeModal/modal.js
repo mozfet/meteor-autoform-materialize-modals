@@ -6,7 +6,6 @@ const forms = [];
 //imports
 import { Template } from 'meteor/templating';
 import './modal.html';
-import { modal } from '../../utilities/modal.js';
 
 //on created
 Template.autoformMaterializeModal.onCreated(() => {
@@ -29,7 +28,7 @@ Template.autoformMaterializeModal.onCreated(() => {
     AutoForm.addHooks([instance.data.id], {
       onSuccess: function (formType, result) {
         console.log('closing', instance.modalId);
-        modal.close(instance.modalId);
+        instance.$('#'+instance.modalId).modal('close');
       }
     });
   }
@@ -62,7 +61,7 @@ Template.autoformMaterializeModal.onRendered(() => {
 
   //open the modal
   console.log('modal.onRendered: open the modal');
-  modal.open(instance.modalId);
+  instance.$('#'+instance.modalId).modal('open');
 });
 
 //helpers
@@ -112,7 +111,7 @@ Template.autoformMaterializeModal.events({
 	'click .js-autoform-materialize-modal-cancel'(event, template) {
     const instance = Template.instance();
 		event.preventDefault();
-		modal.close(instance.modalId);
+		instance.$('#'+instance.modalId).modal('close');
     //TODO make this configurable
     $('#'+instance.modalId).remove();
 		return;

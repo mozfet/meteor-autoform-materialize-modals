@@ -3,7 +3,6 @@
 //imports
 import { Template } from 'meteor/templating';
 import { AutoForm } from 'meteor/aldeed:autoform';
-import { modal } from '../../utilities/modal.js';
 import './launcher.html';
 import './modal.js';
 
