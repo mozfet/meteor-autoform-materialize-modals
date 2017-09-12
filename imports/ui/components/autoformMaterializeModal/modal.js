@@ -28,7 +28,8 @@ Template.autoformMaterializeModal.onCreated(() => {
     AutoForm.addHooks([instance.data.id], {
       onSuccess: function (formType, result) {
         console.log('closing', instance.modalId);
-        instance.$('#'+instance.modalId).modal('close');
+        $('#'+instance.modalId).modal('close');
+        $('#'+instance.modalId).remove();
         $('.modal-overlay').remove();
       }
     });
