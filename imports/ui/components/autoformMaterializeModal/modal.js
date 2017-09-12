@@ -55,6 +55,18 @@ Template.autoformMaterializeModal.onCreated(() => {
   delete instance.formData.submitButtonLabel;
   delete instance.formData.cancelButtonLabel;
   delete instance.formData.title;
+
+  //add handler for escape button
+  $(document).on('keyup', (e) => {
+    console.log('keyup', e);
+    if(e.key === 'Escape') {
+      instance.$('#'+instance.modalId).modal('close');
+      //TODO make this configurable
+      $('#'+instance.modalId).remove();
+      $('.modal-overlay').remove();
+    }
+  });
+
 });
 
 //on rendered
@@ -114,17 +126,20 @@ Template.autoformMaterializeModal.events({
   //when click on cancel
 	'click .js-autoform-materialize-modal-cancel'(event, template) {
     const instance = Template.instance();
-		event.preventDefault();
-		instance.$('#'+instance.modalId).modal('close');
+    event.preventDefault();
+    instance.$('#'+instance.modalId).modal('close');
     //TODO make this configurable
     $('#'+instance.modalId).remove();
-		return;
+    $('.modal-overlay').remove();
+    return;
   }
 });
 
 //on destroyed
 Template.autoformMaterializeModal.onDestroyed(() => {
-  //TODO make this configurable
   const instance = Template.instance();
+  //TODO make this configurable
   $('#'+instance.modalId).remove();
+  $(document).off('keyup');
+  $('.modal-overlay').remove();
 });
