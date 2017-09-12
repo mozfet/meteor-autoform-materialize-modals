@@ -9,7 +9,6 @@ import './modal.js';
 //on created
 Template.autoformMaterializeModalLauncher.onCreated(() => {
   const instance = Template.instance();
-  console.log('launcher.onCreated.instance.data', instance.data);
 
   //init modal parent id
   instance.modalParentId = instance.data.modalParentId;
@@ -49,7 +48,6 @@ Template.autoformMaterializeModalLauncher.events({
 
     //get template data
     const instance = Template.instance();
-    console.log('launcher.instance', instance);
 
     //if parent node id is provided
     let qModalParentNode;
@@ -68,22 +66,18 @@ Template.autoformMaterializeModalLauncher.events({
       //find the container
       qModalParentNode = $('#'+instance.data.id).parents('.container');
     }
-    console.log('launcher.qModalParentNode', qModalParentNode);
 
     //if modal is allready rendered
     qModal = qModalParentNode.find('#'+instance.id);
-    console.log('launcher.qModal', qModal);
 
     if(qModal.get(0)) {
 
       //remove modal so that it can be rerendered
-      console.log('launcher: remove old modal', qModal);
       qModal.remove();
     }
 
     //render the modal
     const modalParentNode = qModalParentNode.get(0);
-    console.log('launcher: render new modal in node', modalParentNode);
     Blaze.renderWithData(Template.autoformMaterializeModal, instance.modalData, modalParentNode);
   }
 });

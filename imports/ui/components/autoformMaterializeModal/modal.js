@@ -11,7 +11,6 @@ import './modal.html';
 Template.autoformMaterializeModal.onCreated(() => {
   const instance = Template.instance();
   const data = instance.data;
-  console.log('modal.onCreated.instance.data', data);
 
   //init modal id
   instance.modalId = 'autoformMaterializeModal_'+data.id;
@@ -19,7 +18,7 @@ Template.autoformMaterializeModal.onCreated(() => {
   //if form has not been registered
   const registered = _.contains(forms, instance.data.id);
   if(!registered) {
-      console.log('registering form', instance.data.id);
+
 
     //register the form
     forms.push(instance.data.id);
@@ -27,7 +26,6 @@ Template.autoformMaterializeModal.onCreated(() => {
     //add on success hook to form
     AutoForm.addHooks([instance.data.id], {
       onSuccess: function (formType, result) {
-        console.log('closing', instance.modalId);
         $('#'+instance.modalId).modal('close');
         $('#'+instance.modalId).remove();
         $('.modal-overlay').remove();
@@ -43,7 +41,6 @@ Template.autoformMaterializeModal.onCreated(() => {
     return result;
   };
   instance.title = data.title?data.title:deCamelCase(data.id);
-  console.log('modal.onCreated.title', instance.title);
 
   //init button labels
   instance.submitButtonLabel = data.submitButtonLabel?data.submitButtonLabel:'Submit';
@@ -58,11 +55,11 @@ Template.autoformMaterializeModal.onCreated(() => {
 
   //add handler for escape button
   $(document).on('keyup', (e) => {
-    console.log('keyup', e);
     if(e.key === 'Escape') {
-      instance.$('#'+instance.modalId).modal('close');
+      const modalSelector = '#'+instance.modalId;
+      $(modalSelector).modal('close');
       //TODO make this configurable
-      $('#'+instance.modalId).remove();
+      $(modalSelector).remove();
       $('.modal-overlay').remove();
     }
   });
@@ -72,12 +69,26 @@ Template.autoformMaterializeModal.onCreated(() => {
 //on rendered
 Template.autoformMaterializeModal.onRendered(() => {
   const instance = Template.instance();
+  const modalSelector = '#'+instance.modalId;
+
+  //workaround: due to materialize-css ready and complete hooks that does not work (see below)
+  //delete modal from dom
+  // instance.$(modalSelector).remove();
 
   //open the modal
-  const modelSelector = '#'+instance.modalId;
-  console.log('modal.onRendered: open the modal', modelSelector);
-  instance.$(modelSelector).modal();
-  instance.$(modelSelector).modal('open');
+  $(modalSelector).modal({
+    dismissible: false,
+    ready: function () {
+      console.log('ready');
+    },
+    complete: function () {
+      console.log('complete');
+      //TODO make this configurable
+      $(modalSelector).remove();
+      $('.modal-overlay').remove();
+    }
+  });
+  $(modalSelector).modal('open');
 });
 
 //helpers
@@ -127,9 +138,10 @@ Template.autoformMaterializeModal.events({
 	'click .js-autoform-materialize-modal-cancel'(event, template) {
     const instance = Template.instance();
     event.preventDefault();
-    instance.$('#'+instance.modalId).modal('close');
+    const modalSelector = '#'+instance.modalId;
+    $(modalSelector).modal('close');
     //TODO make this configurable
-    $('#'+instance.modalId).remove();
+    $(modalSelector).remove();
     $('.modal-overlay').remove();
     return;
   }
