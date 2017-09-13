@@ -71,22 +71,18 @@ Template.autoformMaterializeModal.onRendered(() => {
   const instance = Template.instance();
   const modalSelector = '#'+instance.modalId;
 
-  //workaround: due to materialize-css ready and complete hooks that does not work (see below)
-  //delete modal from dom
-  // instance.$(modalSelector).remove();
-
-  //open the modal
+  //open the modal - none of the init argument seem to work
   $(modalSelector).modal({
-    dismissible: false,
-    ready: function () {
-      console.log('ready');
-    },
-    complete: function () {
-      console.log('complete');
-      //TODO make this configurable
-      $(modalSelector).remove();
-      $('.modal-overlay').remove();
-    }
+    // dismissible: false,
+    // ready: function () {
+    //   console.log('modal ready');
+    // },
+    // complete: function () {
+    //   console.log('modal complete');
+    //   //TODO make this configurable
+    //   $(modalSelector).remove();
+    //   $('.modal-overlay').remove();
+    // }
   });
   $(modalSelector).modal('open');
 });
