@@ -28,7 +28,7 @@ Template.autoformMaterializeModal.onCreated(() => {
       onSuccess: function (formType, result) {
         $('#'+instance.modalId).modal('close');
         $('#'+instance.modalId).remove();
-        $('.modal-overlay').remove();
+        // $('.modal-overlay').remove();
       }
     });
   }
@@ -136,9 +136,8 @@ Template.autoformMaterializeModal.events({
     event.preventDefault();
     const modalSelector = '#'+instance.modalId;
     $(modalSelector).modal('close');
-    //TODO make this configurable
+    //TODO make this configurable?
     $(modalSelector).remove();
-    $('.modal-overlay').remove();
     return;
   }
 });
