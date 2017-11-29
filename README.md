@@ -2,6 +2,14 @@
 Materialize styled AutoForm modals to insert/update/(remove) docs from collections.
 Important: poetic:materialize-scss is no longer maintained and no longer supported.
 
+> **Thank You** This suite of packages is maintained by ExpertBox.com as a thank you to the Open Source community.
+
+> **Whats New(ish)** Responsive Text, Timepicker, Improved arrays in forms
+
+> **Dependancies** Version 3.1.0 of this package was manual smoke tested and seemed to work ok on Playground 3.1.0 on 21 Nov 2017 using Meteor 1.6, Simple Schema 0.5, Autoform 6.2.0, Materialize CSS 0.100.0, and Autoform Materialize Modals 1.1.0.
+
+Version 1.1.0 of this package was manual smoke tested and seemed to work ok on Playground 3.1.0 on 21 Nov 2017 using Meteor 1.6, Simple Schema 0.5, Autoform 6.2.0, Materialize CSS 0.100.0 and Autoform Materialize 3.1.0.
+
 ## Install Materialize-css
 
 ### Install Materialize-css (CSS only) using Atmosphere ###
@@ -118,3 +126,7 @@ To avoid unnecessary maintenance, this package only depends directly on core met
 - [mozfet:meteor-autoform-medium](https://github.com/mozfet/meteor-autoform-medium)
 - [mozfet:materialize-icons](https://github.com/mozfet/meteor-materialize-icons)
 - [mozfet:meteor-autoform-materialize-playground](https://github.com/mozfet/meteor-autoform-materialize-playground)
+
+## Contributors
+
+If you use this package and find it useful, why not help improve it? We want your feature requests, bug reports, and pull requests.
