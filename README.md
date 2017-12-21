@@ -2,7 +2,7 @@
 Materialize styled AutoForm modals to insert/update/(remove) docs from collections.
 Important: poetic:materialize-scss is no longer maintained and no longer supported.
 
-> **Thank You** This suite of packages is maintained by ExpertBox.com as a thank you to the Open Source community.
+> **Thank You** This suite of packages is maintained by [ExpertBox.com](http://www.ExpertBox.com) as a thank you to the Open Source community.
 
 > **Whats New(ish)** Responsive Text, Timepicker, Improved arrays in forms
 
