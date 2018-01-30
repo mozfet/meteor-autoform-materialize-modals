@@ -10,13 +10,6 @@ Important: poetic:materialize-scss is no longer maintained and no longer support
 
 Version 1.1.0 of this package was manual smoke tested and seemed to work ok on Playground 3.1.0 on 21 Nov 2017 using Meteor 1.6, Simple Schema 0.5, Autoform 6.2.0, Materialize CSS 0.100.0 and Autoform Materialize 3.1.0.
 
-## Install Materialize-css
-
-### Install Materialize-css (CSS only) using Atmosphere ###
-
-```
-meteor add materialize:materialize
-```
 ### Install Materialize-css (CSS & SASS) using NPM ###
 
 1. install dependancies
