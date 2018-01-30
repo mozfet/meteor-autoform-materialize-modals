@@ -67,7 +67,7 @@ $ meteor add mozfet:autoform-materialize
 
 ### Install AutoForm Materialize modals ###
 ```
-$ meteor add mozfet:autoform-modals-materialize
+$ meteor add mozfet:autoform-materialize-modals
 ```
 
 ## Usage ##
@@ -76,7 +76,7 @@ In the template where you want to trigger the modal (named example here).
 in example.js:
 ```
 import { Template } from 'meteor/templating';
-import 'meteor/mozfet:autoform-modals-materialize';
+import 'meteor/mozfet:autoform-materialize-modals';
 import './example.html';
 Template.example.helpers({
     data() {
