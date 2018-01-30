@@ -10,6 +10,8 @@ Important: poetic:materialize-scss is no longer maintained and no longer support
 
 Version 1.1.0 of this package was manual smoke tested and seemed to work ok on Playground 3.1.0 on 21 Nov 2017 using Meteor 1.6, Simple Schema 0.5, Autoform 6.2.0, Materialize CSS 0.100.0 and Autoform Materialize 3.1.0.
 
+## Installation ##
+
 ### Install Materialize-css (CSS & SASS) using NPM ###
 
 1. install dependancies
@@ -44,7 +46,7 @@ $link-color: color("light-blue", "darken-1") !default;
 ```
 5. copy fonts folder from `/node-modules/materialize-css/dist/fonts` to '/public'
 
-## Install Autoform-Materialize ##
+### Install Autoform-Materialize ###
 
 1. `meteor add mozfet:autoform-materialize`
 2. In a client file (ex: `/imports/startup/client/autoform.js`)
