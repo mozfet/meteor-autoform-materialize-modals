@@ -116,6 +116,12 @@ Template.autoformMaterializeModal.helpers({
   formData() {
     const instance = Template.instance();
     return instance.formData;
+  },
+
+  //Return true if quickForm is used
+  useQuickForm() {
+    const instance = Template.instance();
+    return !instance.formData.customForm;
   }
 });
 
