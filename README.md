@@ -111,6 +111,22 @@ In addition to the normal quickform data attributes supported by AutoForm, the f
 - data.submitButtonLabel : optional, but recommended for internationalization
 - data.cancelButtonLabel : optional, but recommended for internationalization
 
+If you do not want to use quickform to render the form, you can add the following attribute :
+
+``` javascript
+customForm: {
+  template : 'MyCustomFormTemplate', //Name of template to render inside the modal body
+  data : {} //(optional data for the template)
+}
+```
+
+``` HTML
+<template name="MyCustomFormTemplate">
+  <!-- place your input fields here -->
+  {{> afFieldInput ... }}
+</template>
+```
+
 ## Dependancies ##
 To avoid unnecessary maintenance, this package only depends directly on core meteor packages, however it will not work unless you installed the indirect dependancies as per installation instructions above.
 
