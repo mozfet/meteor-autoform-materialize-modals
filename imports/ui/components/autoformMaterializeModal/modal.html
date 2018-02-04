@@ -2,7 +2,13 @@
   <div id={{modalId}} class="modal">
     <div class="modal-content">
       <h5>{{modalTitle}}</h5>
-      {{> quickForm formData}}
+      {{#if useQuickForm }}
+        {{> quickForm formData}}
+      {{else}}
+        {{#autoForm formData}}
+         {{> Template.dynamic formData.customForm }}
+        {{/autoForm}}
+      {{/if}}
     </div>
     <div class="modal-footer">
       <a class="btn-flat teal-text js-autoform-materialize-modal-submit">{{submitButtonLabel}}</a>

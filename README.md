@@ -10,13 +10,8 @@ Important: poetic:materialize-scss is no longer maintained and no longer support
 
 Version 1.1.0 of this package was manual smoke tested and seemed to work ok on Playground 3.1.0 on 21 Nov 2017 using Meteor 1.6, Simple Schema 0.5, Autoform 6.2.0, Materialize CSS 0.100.0 and Autoform Materialize 3.1.0.
 
-## Install Materialize-css
+## Installation ##
 
-### Install Materialize-css (CSS only) using Atmosphere ###
-
-```
-meteor add materialize:materialize
-```
 ### Install Materialize-css (CSS & SASS) using NPM ###
 
 1. install dependancies
@@ -51,7 +46,7 @@ $link-color: color("light-blue", "darken-1") !default;
 ```
 5. copy fonts folder from `/node-modules/materialize-css/dist/fonts` to '/public'
 
-## Install Autoform-Materialize ##
+### Install Autoform-Materialize ###
 
 1. `meteor add mozfet:autoform-materialize`
 2. In a client file (ex: `/imports/startup/client/autoform.js`)
@@ -74,7 +69,7 @@ $ meteor add mozfet:autoform-materialize
 
 ### Install AutoForm Materialize modals ###
 ```
-$ meteor add mozfet:autoform-modals-materialize
+$ meteor add mozfet:autoform-materialize-modals
 ```
 
 ## Usage ##
@@ -83,7 +78,7 @@ In the template where you want to trigger the modal (named example here).
 in example.js:
 ```
 import { Template } from 'meteor/templating';
-import 'meteor/mozfet:autoform-modals-materialize';
+import 'meteor/mozfet:autoform-materialize-modals';
 import './example.html';
 Template.example.helpers({
     data() {
@@ -115,6 +110,22 @@ In addition to the normal quickform data attributes supported by AutoForm, the f
 - data.modalParentId : required and will warn on console if not present. This is needed because meterializecss has issues with where modals can be rendered, and for this reason the modal is not rendered inside this template, because it might not be safe to render it inside this template.
 - data.submitButtonLabel : optional, but recommended for internationalization
 - data.cancelButtonLabel : optional, but recommended for internationalization
+
+If you do not want to use quickform to render the form, you can add the following attribute :
+
+``` javascript
+customForm: {
+  template : 'MyCustomFormTemplate', //Name of template to render inside the modal body
+  data : {} //(optional data for the template)
+}
+```
+
+``` HTML
+<template name="MyCustomFormTemplate">
+  <!-- place your input fields here -->
+  {{> afFieldInput ... }}
+</template>
+```
 
 ## Dependancies ##
 To avoid unnecessary maintenance, this package only depends directly on core meteor packages, however it will not work unless you installed the indirect dependancies as per installation instructions above.
