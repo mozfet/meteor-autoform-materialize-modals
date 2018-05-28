@@ -6,7 +6,7 @@
         {{> quickForm formData}}
       {{else}}
         {{#autoForm formData}}
-         {{> Template.dynamic formData.customForm }}
+          {{> Template.dynamic template=formData.customForm.template data=data}}
         {{/autoForm}}
       {{/if}}
     </div>

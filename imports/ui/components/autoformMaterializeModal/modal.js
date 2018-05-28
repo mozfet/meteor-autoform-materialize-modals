@@ -19,7 +19,6 @@ Template.autoformMaterializeModal.onCreated(() => {
   const registered = _.contains(forms, instance.data.id);
   if(!registered) {
 
-
     //register the form
     forms.push(instance.data.id);
 
@@ -115,6 +114,7 @@ Template.autoformMaterializeModal.helpers({
   //get the data for the form
   formData() {
     const instance = Template.instance();
+    console.log('from data', instance.formData);
     return instance.formData;
   },
 
