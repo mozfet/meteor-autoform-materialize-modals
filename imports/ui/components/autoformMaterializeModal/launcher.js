@@ -57,14 +57,14 @@ Template.autoformMaterializeModalLauncher.events({
     // else - parent node id was not provided
     else {
 
-      //warning
+      // warning
       console.warn('autoformMaterializeModal was not provided with modal parent node id, rendering modal on container')
 
-      //find the container
+      // find the container
       qModalParentNode = $('#'+instance.data.id).parents('.container')
     }
 
-    //if modal is allready rendered
+    // if modal is allready rendered
     qModal = qModalParentNode.find('#'+instance.id)
 
     if(qModal.get(0)) {
@@ -73,7 +73,7 @@ Template.autoformMaterializeModalLauncher.events({
       qModal.remove()
     }
 
-    console.log('Autoform modal launch:',Template.autoformMaterializeModal, instance.modalData)
+    // console.log('Autoform modal launch:',Template.autoformMaterializeModal, instance.modalData)
 
     //render the modal
     const modalParentNode = qModalParentNode.get(0)
