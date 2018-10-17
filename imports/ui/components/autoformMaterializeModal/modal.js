@@ -5,9 +5,22 @@ const forms = []
 import { Template } from 'meteor/templating'
 import './modal.html'
 
+// this is not called when the modal is dismissed by tapping outside it
+function cleanUp(instance) {
+  // console.log('cleanup')
+  $(document).off('keyup')
+  instance.state.modalInstance.close()
+  instance.state.modalInstance.destroy()
+  $(`#${instance.state.modalId}`).remove()
+  $('.modal-overlay').remove()
+  $('body').css('overflow', '')
+  // console.log('cleanup done')
+}
+
 // on created
 Template.autoformMaterializeModal.onCreated(() => {
   const instance = Template.instance()
+  const data = instance.data
 
   // init state
   instance.state = {}
@@ -16,19 +29,16 @@ Template.autoformMaterializeModal.onCreated(() => {
   instance.state.modalId = 'autoformMaterializeModal_'+instance.data.id
 
   // if form has not been registered
-  const registered = _.contains(forms, instance.data.id);
+  const registered = _.contains(forms, data.id);
   if(!registered) {
 
     // register the form
-    forms.push(instance.data.id)
+    forms.push(data.id)
 
     // add on success hook to form
-    AutoForm.addHooks([instance.data.id], {
+    AutoForm.addHooks([data.id], {
       onSuccess: function (formType, result) {
-        $(document).off('keyup')
-        $('#'+instance.state.modalId).modal('close')
-        $('#'+instance.state.modalId).remove()
-        // $('.modal-overlay').remove();
+        cleanUp(instance)
       }
     })
   }
@@ -40,14 +50,16 @@ Template.autoformMaterializeModal.onCreated(() => {
     result.trim()
     return result
   }
-  instance.title = data.title?data.title:deCamelCase(data.id)
+  instance.title = data.title?data.title:deCamelCase(instance.data.id)
 
   // init button labels
-  instance.submitButtonLabel = data.submitButtonLabel?data.submitButtonLabel:'Submit'
-  instance.cancelButtonLabel = data.cancelButtonLabel?data.cancelButtonLabel:'Cancel'
+  instance.submitButtonLabel = data.submitButtonLabel?data.submitButtonLabel:
+      'Submit'
+  instance.cancelButtonLabel = data.cancelButtonLabel?data.cancelButtonLabel:
+      'Cancel'
 
   // init form data
-  instance.formData = _.clone(data)
+  instance.formData = _.clone(instance.data)
   instance.formData.buttonContent = false
   delete instance.formData.submitButtonLabel
   delete instance.formData.cancelButtonLabel
@@ -61,21 +73,24 @@ Template.autoformMaterializeModal.onCreated(() => {
       $('.modal-overlay').remove()
     }
   })
-
 })
 
 // on rendered
 Template.autoformMaterializeModal.onRendered(() => {
   const instance = Template.instance()
-  const modalSelector = '#'+instance.state.modalId
-
-  const elem = $(modalSelector)
-  const options = {}
-  instance.state.modalInstance = M.Modal.init(elem, options)
+  const elem = $(`#${instance.state.modalId}`)
+  const options = {
+    onCloseEnd() {
+      $('body').css('overflow', '')
+    }
+  }
+  M.Modal.init(elem, options)
+  instance.state.modalInstance = M.Modal.getInstance(elem)
+  console.log(instance.state.modalInstance)
   instance.state.modalInstance.open()
 })
 
-//helpers
+// helpers
 Template.autoformMaterializeModal.helpers({
   modalTitle() {
     const instance = Template.instance()
@@ -121,24 +136,19 @@ Template.autoformMaterializeModal.events({
     const instance = Template.instance()
 		event.preventDefault()
 		instance.$('form').submit()
-		return
   },
 
   // when click on cancel
 	'click .js-autoform-materialize-modal-cancel'(event, template) {
     const instance = Template.instance()
     event.preventDefault()
-    const modalSelector = '#'+instance.state.modalId
-    instance.state.modalInstance.open()
-    instance.state.modalInstance.destroy()
-    return
+    cleanUp(instance)
   }
 })
 
 // on destroyed
 Template.autoformMaterializeModal.onDestroyed(() => {
   const instance = Template.instance()
-  $(document).off('keyup')  
-  instance.state.modalInstance.destroy()
-  $('.modal-overlay').remove()
+  $(document).off('keyup')
+  cleanUp(instance)
 })
