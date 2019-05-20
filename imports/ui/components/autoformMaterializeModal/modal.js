@@ -1,3 +1,6 @@
+// imports
+import { MongoInternals } from 'meteor/mongo'
+
 // globals
 const forms = []
 
@@ -9,8 +12,14 @@ import './modal.html'
 function cleanUp(instance) {
   // console.log('cleanup')
   $(document).off('keyup')
-  instance.state.modalInstance.close()
-  instance.state.modalInstance.destroy()
+  if (instance.state.modalInstance) {
+    instance.state.modalInstance.close()
+    instance.state.modalInstance.destroy()
+  }
+  if (instance.state.removeModalInstance) {
+    instance.state.removeModalInstance.close()
+    instance.state.removeModalInstance.destroy()
+  }
   $(`#${instance.state.modalId}`).remove()
   $('.modal-overlay').remove()
   $('body').css('overflow', '')
@@ -57,6 +66,8 @@ Template.autoformMaterializeModal.onCreated(() => {
       'Submit'
   instance.cancelButtonLabel = data.cancelButtonLabel?data.cancelButtonLabel:
       'Cancel'
+  instance.removeButtonLabel = data.removeButtonLabel?data.removeButtonLabel:
+      'Remove'
 
   // init form data
   instance.formData = _.clone(instance.data)
@@ -86,8 +97,15 @@ Template.autoformMaterializeModal.onRendered(() => {
   }
   M.Modal.init(elem, options)
   instance.state.modalInstance = M.Modal.getInstance(elem)
-  console.log(instance.state.modalInstance)
   instance.state.modalInstance.open()
+
+  // if showing remove button
+  if (instance.data.showRemoveButton) {
+
+    // instantiate remove modal
+    const removeModalQuery = instance.$(`.removeModal`)
+    instance.state.removeModalInstance = M.Modal.init(removeModalQuery, {})[0]
+  }
 })
 
 // helpers
@@ -113,6 +131,17 @@ Template.autoformMaterializeModal.helpers({
   cancelButtonLabel() {
     const instance = Template.instance()
     return instance.cancelButtonLabel
+  },
+
+  showRemoveButton() {
+    const instance = Template.instance()
+    return instance.data.showRemoveButton
+  },
+
+  // get the cancel button label
+  removeButtonLabel() {
+    const instance = Template.instance()
+    return instance.removeButtonLabel
   },
 
   // get the data for the form
@@ -143,6 +172,33 @@ Template.autoformMaterializeModal.events({
     const instance = Template.instance()
     event.preventDefault()
     cleanUp(instance)
+  },
+
+  // when click on remove
+  'click .js-autoform-materialize-modal-remove'(event, template) {
+    const instance = Template.instance()
+    event.preventDefault()
+
+    // show remove modal
+    instance.state.removeModalInstance.open()
+  },
+
+  'click .js-autoform-materialize-modal-remove-confirm'(event, template) {
+    const instance = Template.instance()
+    console.log('Remove confirm button was clicked:', instance.data)
+    if (instance.data.collection && instance.data.doc && instance.data.doc._id) {
+      console.log(`Remove doc ${instance.data.doc._id} from collection `+
+          `${instance.data.collection}.`, instance.data.doc)
+      const collection = window[instance.data.collection]
+      if (collection) {
+        collection.remove(instance.data.doc._id)
+      }
+      else {
+        console.error(`Unable to get collection ${instance.data.collection} `+
+            `to remove doc from modal.`)
+      }
+      cleanUp(instance)
+    }
   }
 })
 

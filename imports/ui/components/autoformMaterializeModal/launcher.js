@@ -75,7 +75,7 @@ Template.autoformMaterializeModalLauncher.events({
 
     // console.log('Autoform modal launch:',Template.autoformMaterializeModal, instance.modalData)
 
-    //render the modal
+    // render the modal
     const modalParentNode = qModalParentNode.get(0)
     Blaze.renderWithData(Template.autoformMaterializeModal, instance.modalData, modalParentNode)
   }
