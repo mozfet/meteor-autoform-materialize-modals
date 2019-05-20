@@ -86,7 +86,8 @@ Template.example.helpers({
         id: 'insertExample',
         collection: 'Examples',
         title: 'Add Example',
-        type: 'insert',
+        type: 'update',
+        showRemoveButton: true,
         modalParentId: 'js-dynaview'
       };
     }
@@ -103,6 +104,8 @@ in example.html:
   {{/autoformMaterializeModalLauncher}}
 </template>
 ```
+
+
 
 This example assumes the use of SimpleSchema and Collections2 on the Examples Collection and use quickform to render the form.
 
