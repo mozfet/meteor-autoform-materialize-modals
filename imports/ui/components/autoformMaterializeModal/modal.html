@@ -6,16 +6,21 @@
         {{> quickForm formData}}
       {{else}}
         {{#autoForm formData}}
-          {{> Template.dynamic template=formData.customForm.template data=data}}
+          {{> Template.dynamic template=formData.customForm.template
+              data=formData.customForm.data}}
         {{/autoForm}}
       {{/if}}
     </div>
     <div class="modal-footer">
       {{#if showRemoveButton}}
-        <a class="btn-flat colorSchemaErrors-text js-autoform-materialize-modal-remove">{{removeButtonLabel}}</a>
+        <a class="btn-flat colorSchemaErrors-text
+            js-autoform-materialize-modal-remove">{{removeButtonLabel}}</a>
       {{/if}}
-      <a class="btn-flat js-autoform-materialize-modal-cancel">{{cancelButtonLabel}}</a>
-      <a class="btn-flat primary-color-text js-autoform-materialize-modal-submit">{{submitButtonLabel}}</a>
+      <a class="btn-flat js-autoform-materialize-modal-cancel">
+        {{cancelButtonLabel}}
+      </a>
+      <a class="btn-flat primary-color-text
+          js-autoform-materialize-modal-submit">{{submitButtonLabel}}</a>
     </div>
   </div>
   <div class="modal removeModal">
